@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { User } from 'src/interfaces/user';
+import { Users } from 'src/interfaces/users';
 import { HttpCrudService } from 'src/services/http-crud.service';
 
 
 @Injectable()
-export class UserService extends HttpCrudService<User, number,any>{
+export class UserService extends HttpCrudService<Users, number>{
 protected baseUrl!: string;
 
   constructor() {
