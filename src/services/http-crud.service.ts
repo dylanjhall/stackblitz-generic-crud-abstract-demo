@@ -6,11 +6,11 @@ import { CrudOperators } from 'src/interfaces/crud-operators';
 import { HttpOptions } from 'src/interfaces/http-options';
 import { toPlainObject } from 'src/utility/http-options-helpers';
 
-export abstract class HttpCrudService<T, K, O extends HttpOptions> implements CrudOperators<T, K, O > {
+export abstract class HttpCrudService<T, K> implements CrudOperators<T, K > {
     protected abstract baseUrl: string;
     private httpOptions:{} = {};
     protected http: HttpClient = inject(HttpClient);
-    constructor(private o:O) {
+    constructor() {
 
    // this.HttpOptions = toPlainObject(o)
     }
@@ -31,14 +31,14 @@ export abstract class HttpCrudService<T, K, O extends HttpOptions> implements Cr
               catchError(this.handleError));
     }
 
-    update(key: K, item: T, options?: O): Observable<T> {
+    update(key: K, item: T, options?: any): Observable<T> {
         return this.http.put<T>(`${this.baseUrl}/${key}`, item, {})
             .pipe(
               shareReplay(1),
               catchError(this.handleError));
     }
 
-    delete(key: K, options?: O): Observable<void> {
+    delete(key: K, options?: any): Observable<void> {
         return this.http.delete<void>(`${this.baseUrl}/${key}`, {})
             .pipe(catchError(this.handleError));
     }
@@ -50,7 +50,5 @@ export abstract class HttpCrudService<T, K, O extends HttpOptions> implements Cr
         );
     }
 
-    private mapHttpOptions(O: any): {} {
-      return {"a"};
-    }
+  
 }
