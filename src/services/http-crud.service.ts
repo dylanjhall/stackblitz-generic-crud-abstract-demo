@@ -1,4 +1,4 @@
-import { HttpClient, HttpErrorResponse, HttpEvent } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, shareReplay } from 'rxjs/operators';
@@ -9,7 +9,7 @@ export abstract class HttpCrudService<T, K> implements CrudOperators<T, K> {
   private httpOptions: {} = {};
   protected http: HttpClient = inject(HttpClient);
   constructor() {}
-  
+
   create(item: T, options: {}): Observable<T> {
     return this.http
       .post<T>(this.baseUrl, item, options)
