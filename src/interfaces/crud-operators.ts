@@ -1,11 +1,9 @@
-import { HttpEvent } from "@angular/common/http";
-import { Observable } from "rxjs/internal/Observable";
-import { HttpOptions } from "./http-options";
+import { HttpEvent } from '@angular/common/http';
+import { Observable } from 'rxjs/internal/Observable';
 
-
-export interface CrudOperators<T, K, O > {
-  create(item: any, options?: {}): Observable<T>;
-  read(key: K, options?: O): Observable<T>;
-  update(key: K, item: T, options?: O): Observable<T>;
-  delete(key: K, options?: O): Observable<void>;
+export interface CrudOperators<T, K> {
+  create(item: any, options: any): Observable<T>;
+  read(key: K, options: any): Observable<T>;
+  update(key: K, item: T, options: any): Observable<T>;
+  delete(key: K, options: any): Observable<void>;
 }
